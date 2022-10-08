@@ -2,7 +2,7 @@ name: 'Terraform Apply'
 
 on: [workflow_dispatch]
 
-permissions: write-all
+permissions:
   id-token: write
   contents: read
 
