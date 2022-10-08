@@ -7,12 +7,12 @@ terraform {
   }
 }
 provider "aws" {
-  region = "us-east-1"
+  region = data.aws_region.current.name
 }
 
 data "aws_caller_identity" "current" {}
-
-
+data "aws_region" "current" {}
+data "aws_availability_zones" "available" {}
 data "archive_file" "lambda_zip" {
   type        = "zip"
   source_dir  = "modules/module-1/resources/lambda/react"
@@ -3356,7 +3356,7 @@ resource "aws_internet_gateway" "goat_gw" {
 resource "aws_subnet" "goat_subnet" {
   vpc_id                  = aws_vpc.goat_vpc.id
   cidr_block              = "192.168.0.0/24"
-  availability_zone       = "us-east-1a"
+  availability_zone       = data.aws_availability_zones.available.names[0]
   map_public_ip_on_launch = true
   tags = {
     Name = "AWS_GOAT App subnet"
