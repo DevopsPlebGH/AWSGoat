@@ -28,7 +28,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-        aws-region: ${{ secrets.AWS_REGION }}
+        aws-region: "us-west-1"
         role-session-name: ${{ secrets.AWS_ROLE_SESSION_NAME }}
 
     - name: Set Account ID
